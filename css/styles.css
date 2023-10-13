@@ -2,10 +2,10 @@
 
 /* === CSS-MUUTTUJAT === */
 :root {
-    --primary-bg-color: #faf6f6;
-    --error-color: #FF6347;
-    --primary-button-color: #4CAF50;
-    --hover-button-color: #45a049;
+    --primary-bg-color: #ffd18b;
+    --error-color: #ff2600;
+    --primary-button-color: #00af06;
+    --hover-button-color: #00d60b;
 }
 
 /* === PERUSTYYLIT === */
@@ -65,7 +65,8 @@ input, select, button {
     padding: 10px;
     margin-bottom: 15px;
     border-radius: 4px;
-    border: 1px solid #ddd;
+    border: 1px;
+    box-shadow: inset 0px 4px 6px rgba(0, 0, 0,  0.4);
     box-sizing: border-box;
 }
 
@@ -76,14 +77,22 @@ button {
     cursor: pointer;
     box-shadow: 0px 4px 6px rgba(0, 0, 0,  0.4);
 }
-
+#resetButton {
+    background-color: rgb(191, 0, 0);
+}
 #resetButton:hover {
-    background-color: rgb(225, 66, 66);
+    background-color: rgb(255, 0, 0);
+    box-shadow: none;
+}
+
+select {
+    cursor: pointer;
 }
 
 /* PAINIKKEEN HOVER JA FOCUS TYYLI */
 button:hover, button:focus {
     background-color: var(--hover-button-color);
+    box-shadow: none;
 }
 
 /* === SYÖTTEIDEN VIRHEILMOITUKSET === */

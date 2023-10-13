@@ -99,8 +99,8 @@ function updateSummary() {
         // KÄY LÄPI JOKAINEN KATEGORIA JA LISÄÄ NE "SUMMARY" ELEMENTTIIN
         for (const category in summary) {
             const pHours = document.createElement('p');
-            pHours.textContent = `${categoryMapping[category]}: ${summary[category].hours} Tuntia`;
-            summaryDiv.appendChild(pHours);
+            pHours.textContent = 'Kategoria: ${categoryMapping[entry.category]}';
+            ul.appendChild(categoryLi);
             
             // LISÄTÄÄN KUVAUKSET, JOS NE OVAT OLEMASSA
             if(summary[category].descriptions.length > 0) {
