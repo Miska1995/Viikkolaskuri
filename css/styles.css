@@ -1,0 +1,149 @@
+/* styles.css */
+
+/* === CSS-MUUTTUJAT === */
+:root {
+    --primary-bg-color: #faf6f6;
+    --error-color: #FF6347;
+    --primary-button-color: #4CAF50;
+    --hover-button-color: #45a049;
+}
+
+/* === PERUSTYYLIT === */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--primary-bg-color);
+    background-image: url('../images/Sininen.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5%;
+    margin: 0;
+    height: 100vh;  /* KOKO NÄYTÖN KORKEUS */
+}
+
+/* ANIMAATION MÄÄRITTELY */
+@keyframes slideIn {
+    to {
+        opacity: 1; /* LOPULTA OTSIKKO ON NÄKYVÄ */
+        transform: translateY(0); /* LOPULTA OTSIKKO ON ALKUPERÄISESSÄ PAIKASSAAN */
+    }
+}
+
+
+/* === OTSIKON TYYLI === */
+h1 {
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+    opacity: 0; /* ALUKSI OTSIKKO ON NÄKYMÄTÖN */
+    transform: translateY(-50px); /* ALUKSI OTSIKKO ON HIEMAN YLEMPÄNÄ */
+    animation: slideIn 3s forwards; /* KÄYTETÄÄN ANIMAATIOTA */
+}
+
+/* === LOMAKKEEN TYYLI === */
+form {
+    background-color: var(--primary-bg-color);
+    border-radius: 8px;
+    padding: 20px;
+    width: 80%; 
+    max-width: 25%;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0; /* ALUKSI LOMAKE ON NÄKYMÄTÖN */
+    transform: translateY(-50px); /* ALUKSI LOMAKE ON HIEMAN YLEMPÄNÄ */
+    animation: slideIn 3s forwards; /* KÄYTETÄÄN ANIMAATIOTA */
+}
+
+/* === SYÖTTEIDEN JA PAINIKKEEN TYYLI === */
+input, select, button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+/* === PAINIKKEEN TYYLI === */
+button {
+    background-color: var(--primary-button-color);
+    color: white;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0,  0.4);
+}
+
+#resetButton:hover {
+    background-color: rgb(225, 66, 66);
+}
+
+/* PAINIKKEEN HOVER JA FOCUS TYYLI */
+button:hover, button:focus {
+    background-color: var(--hover-button-color);
+}
+
+/* === SYÖTTEIDEN VIRHEILMOITUKSET === */
+input:invalid, select:invalid {
+    border-color: var(--error-color);
+}
+
+/* === ALAOSAN TYYLI === */
+footer {
+    color: white;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+    opacity: 0; /* ALUKSI OTSIKKO ON NÄKYMÄTÖN */
+    transform: translateY(-50px); /* ALUKSI OTSIKKO ON HIEMAN YLEMPÄNÄ */
+    animation: slideIn 3s forwards; /* KÄYTETÄÄN ANIMAATIOTA */
+}
+
+/* === YHTEENVETO-LAATIKON TYYLI === */
+#summary {
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    width: 80%;
+    max-width: 25%;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+/* LISÄÄ VIIVA JOKA TOISEN RIVIN JÄLKEEN */
+#summary > * {
+    border-bottom: 1px solid #ccc;
+}
+
+/* POISTA VIIVA JOKA TOISEN RIVIN KOHDALTA */
+#summary > *:nth-child(odd) {
+    border-bottom: none;
+}
+
+/* === KATEGORIAT JA KUVAUKSET === */
+#summary p.category-title {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 2px solid white;
+    padding-bottom: 5px;
+}
+
+#summary p.descriptions {
+    font-weight: normal;
+    color: black;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+/* === RESPONSIVISET TYYLIT === */
+@media only screen and (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+}
