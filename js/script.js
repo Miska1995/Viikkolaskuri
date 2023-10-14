@@ -1,7 +1,8 @@
 /* SCRIPT.JS */
 
-// TÄMÄ KOODI SUORITETAAN, KUN KOKO DOKUMENTTI ON LATAUTUNUT
+// KUN KOKO DOKUMENTTI ON LATAUTUNUT
 document.addEventListener('DOMContentLoaded', function () {
+    // REKISTERÖIDÄÄN TAPAHTUMANKUUNTELIJÄT JA PÄIVITETÄÄN YHTEENVETO
     registerEventListeners();
     updateSummary();
 });
@@ -21,36 +22,41 @@ function handleFormSubmit(e) {
     e.preventDefault();
 
     // HAETAAN KÄYTTÄJÄN SYÖTTÄMÄT ARVOT
-    const hours = parseFloat(document.getElementById('hours').value);
-    const description = document.getElementById('description').value;
-    const category = document.getElementById('category').value;
+    const hoursInput = document.getElementById('hours');
+    const descriptionInput = document.getElementById('description');
+    const categorySelect = document.getElementById('category');
 
-    // TEHDÄÄN TARKISTUKSET SYÖTETYILLE ARVOILLE
+    const hours = parseFloat(hoursInput.value);
+    const description = descriptionInput.value;
+    const category = categorySelect.value;
+
+    // TARKISTETAAN, ETTEIVÄT SYÖTTEET OLE TYHJIÄ TAI KELVOTTOMIA
     if (isNaN(hours) || hours <= 0 || description === '' || category === '') {
-        alert("Tarkista tuntimäärä, kuvaus ja kategoria!");
+        alert("Tarkista syötteet!");
         return;
     }
 
-    // HAETAAN TIEDOT LOCALSTORAGESTA JA LISÄTÄÄN UUSI MERKINTÄ
-    let entries = JSON.parse(localStorage.getItem('entries')) || [];
-    entries.push({ hours, description, category });
-    localStorage.setItem('entries', JSON.stringify(entries));
+    // LUODAAN MERKINTÄ JA TALLENNETAAN SE LOCALSTORAGEEN
+    const entry = { hours, description, category };
+    const entries = getEntriesFromLocalStorage();
+    entries.push(entry);
+    setEntriesToLocalStorage(entries);
 
-    // PÄIVITETÄÄN YHTEENVETO JA TYHJENNÄ LOMAKE
+    // PÄIVITETÄÄN YHTEENVETO JA TYHJENNETÄÄN LOMAKE
     updateSummary();
-    e.target.reset();
+    resetForm(e.target);
 }
 
 function handleResetButtonClick() {
     // KYSYTÄÄN VARMISTUS KÄYTTÄJÄLTÄ ENNEN TIETOJEN POISTAMISTA
     if (confirm("Haluatko varmasti tyhjentää kaikki tiedot?")) {
         // POISTETAAN TIEDOT LOCALSTORAGESTA JA PÄIVITETÄÄN YHTEENVETO
-        localStorage.removeItem('entries');
+        clearLocalStorage();
         updateSummary();
     }
 }
 
-// MÄÄRITYS KATEGORIATUNNUSTEN JA KÄYTTÄJÄLLE NÄKYVIEN KATEGORIANIMIEN VÄLILLÄ
+// MÄÄRITETÄÄN KATEGORIATUNNUSTEN JA KÄYTTÄJÄLLE NÄKYVIEN KATEGORIANIMIEN VÄLILLÄ
 const categoryMapping = {
     work: 'Työ',
     study: 'Opiskelu',
@@ -62,22 +68,45 @@ const categoryMapping = {
 const categorySelect = document.getElementById('category');
 
 // LISÄTÄÄN "VALITSE KATEGORIA" OLETUSARVONA VALIKKOON
-const defaultOption = document.createElement('option');
-defaultOption.value = '';
-defaultOption.text = 'Valitse kategoria';
-categorySelect.appendChild(defaultOption);
+addCategoryOption(categorySelect, '', 'Valitse kategoria');
 
 // LISÄTÄÄN MUUT VAIHTOEHDOT VALIKKOON
 for (const category in categoryMapping) {
+    const optionValue = category;
+    const optionText = categoryMapping[category];
+    addCategoryOption(categorySelect, optionValue, optionText);
+}
+
+function addCategoryOption(selectElement, value, text) {
     const option = document.createElement('option');
-    option.value = category;
-    option.text = categoryMapping[category];
-    categorySelect.appendChild(option);
+    option.value = value;
+    option.text = text;
+    selectElement.appendChild(option);
+}
+
+function getEntriesFromLocalStorage() {
+    // HAETAAN TALLENNUKSET LOCALSTORAGESTA TAI PALAUTETAAN TYHJÄ TAULUKKO
+    return JSON.parse(localStorage.getItem('entries')) || [];
+}
+
+function setEntriesToLocalStorage(entries) {
+    // TALLENNETAAN MERKINNÄT LOCALSTORAGEEN
+    localStorage.setItem('entries', JSON.stringify(entries));
+}
+
+function clearLocalStorage() {
+    // POISTETAAN MERKINNÄT LOCALSTORAGESTA
+    localStorage.removeItem('entries');
+}
+
+function resetForm(form) {
+    // TYHJENNETÄÄN LOMAKE
+    form.reset();
 }
 
 function updateSummary() {
-    // HAETAAN KAIKKI TALLENNUKSET LOCALSTORAGESTA
-    const entries = JSON.parse(localStorage.getItem('entries')) || [];
+    // HAETAAN KAIKKI TALLENNUKSET "LOCALSTORAGESTA"
+    const entries = getEntriesFromLocalStorage();
     // HAETAAN "SUMMARY" ELEMENTTI
     const summaryDiv = document.getElementById('summary');
     // TYHJENNETÄÄN "SUMMARY" ELEMENTIN SISÄLTÖ
@@ -85,22 +114,22 @@ function updateSummary() {
 
     let summary = {};
 
-    // KÄY LÄPI JOKAINEN TALLENNETTU MERKINTÄ JA LASKE YHTEENVETO
+    // LUODAAN JA TÄYDENTÄÄ YHTEENVETO-OBJEKTIA KAIKILLA TALLENNETUILLA MERKINNÖILLÄ
     entries.forEach(entry => {
         summary[entry.category] = summary[entry.category] || { hours: 0, descriptions: [] };
         summary[entry.category].hours += entry.hours;
         summary[entry.category].descriptions.push(entry.description);
     });
 
-    // NÄYTTÄÄ TAI PIILETTÄÄ YHTEENVETO SEN MUKAAN, ONKO TALLETUKSIA
+    // NÄYTETÄÄN TAI PILOTETAAN YHTEENVETO SEN MUKAAN, ONKO MERKINTÖJÄ
     if (entries.length > 0) {
         summaryDiv.style.display = "block";
 
-        // KÄY LÄPI JOKAINEN KATEGORIA JA LISÄÄ NE "SUMMARY" ELEMENTTIIN
+        // KÄYDÄÄN LÄPI JOKAINEN KATEGORIA JA LISÄTÄÄN NE "SUMMARY" ELEMENTTIIN
         for (const category in summary) {
-            const pCategory = document.createElement('p');
-            pCategory.textContent = `Kategoria: ${categoryMapping[category]}`;
-            summaryDiv.appendChild(pCategory);
+            const pHours = document.createElement('p');
+            pHours.textContent = `${categoryMapping[category]}: ${summary[category].hours} Tuntia`;
+            summaryDiv.appendChild(pHours);
 
             // LISÄTÄÄN KUVAUKSET, JOS NE OVAT OLEMASSA
             if (summary[category].descriptions.length > 0) {
@@ -110,7 +139,7 @@ function updateSummary() {
             }
         }
     } else {
-        // PIILLOTTAA "SUMMARY" ELEMENTIN, JOS TALLETUKSIA EI OLE
+        // PILOTETAAN "SUMMARY" ELEMENTTI, JOS MERKINTÖJÄ EI OLE
         summaryDiv.style.display = "none";
     }
 }
