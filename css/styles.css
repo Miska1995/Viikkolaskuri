@@ -22,7 +22,7 @@ body {
     align-items: center;
     padding: 5%;
     margin: 0;
-    height: 100vh;  /* KOKO NÄYTÖN KORKEUS */
+    min-height: 100vh;  /* KOKO NÄYTÖN KORKEUS */
 }
 
 /* ANIMAATION MÄÄRITTELY */
@@ -32,7 +32,6 @@ body {
         transform: translateY(0); /* LOPULTA OTSIKKO ON ALKUPERÄISESSÄ PAIKASSAAN */
     }
 }
-
 
 /* === OTSIKON TYYLI === */
 h1 {
@@ -51,7 +50,7 @@ form {
     background-color: var(--primary-bg-color);
     border-radius: 8px;
     padding: 20px;
-    width: 80%; 
+    width: 80%;
     max-width: 25%;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     opacity: 0; /* ALUKSI LOMAKE ON NÄKYMÄTÖN */
@@ -65,7 +64,7 @@ input, select, button {
     padding: 10px;
     margin-bottom: 15px;
     border-radius: 4px;
-    border: 1px;
+    border: 1px solid #ccc; /* Lisää puuttuva border-määritys */
     box-shadow: inset 0px 4px 6px rgba(0, 0, 0,  0.4);
     box-sizing: border-box;
 }
