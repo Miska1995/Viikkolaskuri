@@ -9,38 +9,31 @@
     <link rel="stylesheet" href="css/styles.css">
 
     <!-- JAVASCRIPT-TIEDOSTON LIITTÄMINEN -->
-    <script src="js/script.js"></script>
+    <script src="js/script.js" defer></script> <!-- Lisätty defer-attribuut -->
 
     <!-- SIVUN OTSIKKO -->
     <title>Viikon Tuntikirjanpito</title>
     <link rel="icon" type="image/x-icon" href="../images/favicon.jpg">
-
 </head>
 <body>
-        <!-- OTSIKKO SIVULLE -->
-        <h1>Tuntikirjanpito</h1>
+    <!-- OTSIKKO SIVULLE -->
+    <h1>Tuntikirjanpito</h1>
     
-        <!-- LOMAKE AJAN KIRJAAMISEKSI -->
+    <!-- LOMAKE AJAN KIRJAAMISEKSI -->
     <form id="timeForm">
         <!-- SYÖTTÖKENTÄT: TUNNIT JA KUVAUS -->
         <input type="number" id="hours" placeholder="Tunnit" required min="0" step="0.5">
         <input type="text" id="description" placeholder="Kuvaus" required>
 
-<!-- VALIKKO: KATEGORIA (TYÖ, OPISKELU, LIIKUNTA, LEPO) -->
-<select id="category">
-    <!-- Lisätään "Valitse kategoria" oletusarvona valikkoon -->
-    <option value="">Valitse kategoria</option>
-    <!-- Lisätään muut vaihtoehdot -->
-    <option value="work">Työ</option>
-    <option value="study">Opiskelu</option>
-    <option value="exercise">Liikunta</option>
-    <option value="rest">Lepo</option>
-    <option value="Other">Muuta</option>
-</select>
+        <!-- VALIKKO: KATEGORIA (TYÖ, OPISKELU, LIIKUNTA, LEPO) -->
+        <select id="category" required>
+            <!-- Lisätään "Valitse kategoria" oletusarvona valikkoon -->
+            <option value="">Valitse kategoria</option>
+        </select>
 
         <!-- PAINIKKEET: LOMAKKEEN LÄHETTÄMINEN JA TIETOJEN NOLLUS -->
         <button type="submit">Lisää</button>
-        <button id="resetButton">Tyhjennä</button>
+        <button type="button" id="resetButton">Tyhjennä</button> <!-- Lisätty type="button" -->
     </form>
 
     <!-- TYHJÄ ALUE YHTEENVEDOLLE, JOKA TÄYTETÄÄN JAVASCRIPTILLÄ -->
