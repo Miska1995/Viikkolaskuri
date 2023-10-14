@@ -104,6 +104,7 @@ function resetForm(form) {
     form.reset();
 }
 
+// PÄIVITETÄÄN YHTEENVETO
 function updateSummary() {
     // HAETAAN KAIKKI TALLENNUKSET "LOCALSTORAGESTA"
     const entries = getEntriesFromLocalStorage();
@@ -111,7 +112,7 @@ function updateSummary() {
     const summaryDiv = document.getElementById('summary');
     // TYHJENNETÄÄN "SUMMARY" ELEMENTIN SISÄLTÖ
     summaryDiv.innerHTML = "";
-
+    
     let summary = {};
 
     // LUODAAN JA TÄYDENTÄÄ YHTEENVETO-OBJEKTIA KAIKILLA TALLENNETUILLA MERKINNÖILLÄ
@@ -121,16 +122,16 @@ function updateSummary() {
         summary[entry.category].descriptions.push(entry.description);
     });
 
-    // NÄYTETÄÄN TAI PILOTETAAN YHTEENVETO SEN MUKAAN, ONKO MERKINTÖJÄ
+    // NÄYTÄ TAI PIILOTA YHTEENVETO SEN MUKAAN, ONKO MERKINTÖJÄ
     if (entries.length > 0) {
         summaryDiv.style.display = "block";
-
-        // KÄYDÄÄN LÄPI JOKAINEN KATEGORIA JA LISÄTÄÄN NE "SUMMARY" ELEMENTTIIN
+        
+        // KÄY LÄPI JOKAINEN KATEGORIA JA LISÄÄ NE "SUMMARY" ELEMENTTIIN
         for (const category in summary) {
             const pHours = document.createElement('p');
             pHours.textContent = `${categoryMapping[category]}: ${summary[category].hours} Tuntia`;
             summaryDiv.appendChild(pHours);
-
+            
             // LISÄTÄÄN KUVAUKSET, JOS NE OVAT OLEMASSA
             if (summary[category].descriptions.length > 0) {
                 const pDescriptions = document.createElement('p');
@@ -139,7 +140,7 @@ function updateSummary() {
             }
         }
     } else {
-        // PILOTETAAN "SUMMARY" ELEMENTTI, JOS MERKINTÖJÄ EI OLE
-        summaryDiv.style.display = "none";
+        // PIILYTÄ "SUMMARY" ELEMENTTI, JOS MERKINTÖJÄ EI OLE
+        summaryDiv.style.display = "none"; 
     }
 }
