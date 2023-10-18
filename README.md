@@ -1,13 +1,21 @@
 # Viikkolaskuri
-Koulun javascript kurssin projekti
+Projekti 1: DOM-skriptaus
 
-Lähteet:
+(Yleistä infoa)
+
+Koodit ovat pääasiassa kirjoitettu Englanniksi.
+
+Tiedossa olevia asioita, jotka pitää korjata myöhemmin: Summary-lista ei sulkeudu automaattisesti, kun käyttäjä poistuu sivulta. 
+summary-lista ei ole saman levyinen kuin Formi tabletin näytöllä (Samsung S3)
+
+(Lähteet)
 
 Lähteinä olemme käyttäneet pääasiassa W3schoolia (https://www.w3schools.com/js/default.asp) sekä inspiraation kannalta myös ChatGPT:tä (https://chat.openai.com/)
-Mitään koodia ei olla kuitenkaan suoraan kopioineet, vaan kaikkia ollan muunneltu oman näköiseksi.
+Mitään koodia ei olla kuitenkaan suoraan kopioineet, vaan kaikkia ollan muunneltu oman näköiseksi. 
+HTML,CSS ja Javascript koodien kommentit ovat ChatGPT:n "selkeyttämiä" 
 
-HTML on 100% omaa työtä.
-Alla on CSS-tiedostossa olevat koodit, jotka "napannut" w3schoolista, jonka jälkeen hieman muunnellut itse miellyttävännän näköiseksi:
+HTML on 100% omaa työtä (kommentit lukuunottamatta)
+Alla on CSS-tiedostossa olevat koodit, jotka olemme "napanneet" w3schoolista, jonka jälkeen hieman muunnellut itse miellyttävännän näköiseksi:
 
 1) Animaatio
    
@@ -27,7 +35,7 @@ Alla on CSS-tiedostossa olevat koodit, jotka "napannut" w3schoolista, jonka jäl
       }
   }
 
-Javascript-tiedostossa kommentteja on tuotettu ChatGPT:n avulla, mutta myös muutamia eri toimintoja ollaan "matkittu" w3schoolista/ChatGPT:stä. Alla koodit.
+Alla javascript-tiedostossa koodeja, jotka otettu lähteistä.
 
 1) Toiminto, joka piilottaa summary-listan jos siellä ei ole merkintöjä
 
