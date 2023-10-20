@@ -7,6 +7,7 @@ Koodit ovat pääasiassa kirjoitettu Englanniksi.
 
 Tiedossa olevia asioita, jotka pitää korjata myöhemmin: Summary-lista ei sulkeudu automaattisesti, kun käyttäjä poistuu sivulta. 
 summary-lista ei ole saman levyinen kuin Formi tabletin näytöllä (Samsung S3)
+Meillä oli myös synkronointi ongelmia githubin kanssa. Joten kuvasimme tallenteemme Miskan VScode näkymästä.
 
 (Lähteet)
 
