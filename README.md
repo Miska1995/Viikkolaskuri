@@ -3,6 +3,8 @@ Projekti 1: DOM-skriptaus
 
 (Yleistä infoa)
 
+Julkistu netlify:ssä https://vikkolaskuri.netlify.app/
+
 Koodit ovat pääasiassa kirjoitettu Englanniksi.
 
 Tiedossa olevia asioita, jotka pitää korjata myöhemmin: Summary-lista ei sulkeudu automaattisesti, kun käyttäjä poistuu sivulta. 
